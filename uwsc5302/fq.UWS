@@ -1,0 +1,50 @@
+//数字を変えればよい。
+// 始まり番号
+DIM n = 0
+// 終わり番号
+DIM max = 10
+
+DIM ID = GETID("NEEDS-FinancialQUEST","WindowsForms10.Window.")
+DIM TIME = 0.5
+
+FOR n TO MAX STEP 1
+	ACW(ID)
+	//　入力場所チェック
+	CHKIMG("start.bmp")
+	SLEEP(TIME)
+	// 開始の入力
+	BTN(LEFT,CLICK,G_IMG_X + 100,G_IMG_Y)
+	SLEEP(TIME)
+	KBD(VK_CTRL,DOWN)
+	KBD(VK_A)
+	KBD(VK_CTRL,UP)
+	SENDSTR(ID,"P-" + n)
+	// 終了の入力
+	BTN(LEFT,CLICK,G_IMG_X + 400,G_IMG_Y)
+	SLEEP(TIME)
+	KBD(VK_CTRL,DOWN)
+	KBD(VK_A)
+	KBD(VK_CTRL,UP)
+	SLEEP(TIME)
+	SENDSTR(ID,"P-" + (n + 1))
+	// 次へ
+	IFB CHKIMG("next.bmp")
+		BTN(LEFT,CLICK,G_IMG_X,G_IMG_Y)
+	ELSE
+		MSGBOX("見つからない")
+		EXITEXIT
+	ENDIF
+	//ダウンロード
+	BTN(LEFT,CLICK,G_IMG_X+20,G_IMG_Y+20)
+	SLEEP(TIME)
+	SLEEP(TIME)
+	SLEEP(TIME)
+	KBD(VK_ENTER)
+	SLEEP(TIME)
+	SLEEP(TIME)
+	SLEEP(TIME)
+	KBD(VK_ENTER)
+	//戻る
+	CHKIMG("back.bmp")
+	BTN(LEFT,CLICK,G_IMG_X+20,G_IMG_Y+20)
+NEXT
